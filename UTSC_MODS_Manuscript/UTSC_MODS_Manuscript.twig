@@ -3,6 +3,7 @@
 {% autoescape false %}
 {% for data in gg %}
 
+{# to do: clean up empty tags #}
 
 <mods
   xmlns="http://www.loc.gov/mods/v3"
@@ -77,6 +78,8 @@
 {% endfor %}
 {% endif %}
 
+
+{# need to clean up qualifiers if empty #}
   <originInfo>
     <dateCreated qualifier="{{ data.Date_Created_Qualifier1 }}">{{ data.Date_Created1 }}</dateCreated>
     <dateCreated keyDate="yes">{{ data.KeyDate1 }}</dateCreated>
@@ -142,7 +145,7 @@
   <recordInfo>
     <recordOrigin>{{ data.Bibliographic_Information }}</recordOrigin>
   </recordInfo>
-  <typeOfResource>{{ data.Resource_Type }}</typeOfResource>
+  <typeOfResource>text</typeOfResource>
 </mods>
 
 {% endfor %}
