@@ -22,6 +22,7 @@
   <identifier type="local">{{ data.Manuscript_Number }}</identifier>
   <identifier type="former">{{ data.Former_Identifiers }}</identifier>
 
+{% if data.Name1 is not empty%}
   <name type="personal">
     <role>
       <roleTerm authority="marcrelator" type="text">{{ data.Role1 }}</roleTerm>
@@ -29,7 +30,9 @@
     <namePart>{{ data.Name1 }}</namePart>
     <affiliation>{{ data.AffiliationDepartment1 }}</affiliation>
   </name>
+  {% endif %}
 
+{% if data.Name2 is not empty%}
   <name type="personal">
     <role>
       <roleTerm authority="marcrelator" type="text">{{ data.Role2 }}</roleTerm>
@@ -37,7 +40,9 @@
     <namePart>{{ data.Name2 }}</namePart>
     <affiliation>{{ data.AffiliationDepartment2 }}</affiliation>
   </name>
+  {% endif %}
 
+{% if data.Name3 is not empty%}
   <name type="personal">
     <role>
       <roleTerm authority="marcrelator" type="text">{{ data.Role3 }}</roleTerm>
@@ -45,7 +50,9 @@
     <namePart>{{ data.Name3 }}</namePart>
     <affiliation>{{ data.AffiliationDepartment3 }}</affiliation>
   </name>
+  {% endif %}
 
+{% if data.Name4 is not empty%}
   <name type="personal">
     <role>
       <roleTerm authority="marcrelator" type="text">{{ data.Role4 }}</roleTerm>
@@ -53,7 +60,9 @@
     <namePart>{{ data.Name4 }}</namePart>
     <affiliation>{{ data.AffiliationDepartment4 }}</affiliation>
   </name>
+  {% endif %}
 
+{% if data.Name5 is not empty%}
   <name type="personal">
     <role>
       <roleTerm authority="marcrelator" type="text">{{ data.Role5 }}</roleTerm>
@@ -61,7 +70,9 @@
     <namePart>{{ data.Name5 }}</namePart>
     <affiliation>{{ data.AffiliationDepartment5 }}</affiliation>
   </name>
+  {% endif %}
 
+{% if data.Name6 is not empty%}
   <name type="personal">
     <role>
       <roleTerm authority="marcrelator" type="text">{{ data.Role6 }}</roleTerm>
@@ -69,6 +80,7 @@
     <namePart>{{ data.Name6 }}</namePart>
     <affiliation>{{ data.AffiliationDepartment6 }}</affiliation>
   </name>
+{% endif %}
 
   <abstract>{{ data.Abstract }}</abstract>
 
@@ -81,15 +93,22 @@
 
 {# need to clean up qualifiers if empty #}
   <originInfo>
-    <dateCreated qualifier="{{ data.Date_Created_Qualifier1 }}">{{ data.Date_Created1 }}</dateCreated>
+
+{% if data.Date_Created1 is not empty %}
+    <dateCreated{% if data.Date_Created_Qualifier1 is not empty %} qualifier="{{ data.Date_Created_Qualifier1 }}"{% endif %}>{{ data.Date_Created1 }}</dateCreated>
     <dateCreated keyDate="yes">{{ data.KeyDate1 }}</dateCreated>
+{% endif %}
 
-    <dateCreated qualifier="{{ data.Date_Created_Qualifier2 }}">{{ data.Date_Created2 }}</dateCreated>
+{% if data.Date_Created2 is not empty %}
+    <dateCreated{% if data.Date_Created_Qualifier2 is not empty %} qualifier="{{ data.Date_Created_Qualifier2 }}"{% endif %}>{{ data.Date_Created2 }}</dateCreated>
     <dateCreated keyDate="yes">{{ data.KeyDate2 }}</dateCreated>
+{% endif %}
 
-    <dateCreated qualifier="{{ data.Date_Created_Qualifier3 }}">{{ data.Date_Created3 }}</dateCreated>
+
+{% if data.Date_Created3 is not empty %}
+    <dateCreated{% if data.Date_Created_Qualifier1 is not empty %} qualifier="{{ data.Date_Created_Qualifier3 }}"{% endif %}>{{ data.Date_Created3 }}</dateCreated>
     <dateCreated keyDate="yes">{{ data.KeyDate3 }}</dateCreated>
-
+{% endif %}
 
     <issuance>monographic</issuance>
     <dateCaptured>{{ data.Date_Captured }}</dateCaptured>
@@ -100,6 +119,8 @@
       <placeTerm type="text">{{ data.Place_OriginInfo }}</placeTerm>
     </place>
   </originInfo>
+
+
   <physicalDescription>
     <note type="medium">{{ data.Medium }}</note>
   </physicalDescription>
@@ -113,7 +134,9 @@
   <physicalDescription>
     <note type="decoration">{{ data.Decoration_Description }}</note>
   </physicalDescription>
+
   <note>{{ data.Notes }}</note>
+
   <subject>
     <topic>{{ data.Topic }}</topic>
     <geographic/>
@@ -130,6 +153,7 @@
       <coordinates>14.1968735,38.5452165</coordinates>
     </cartographics>
   </subject>
+
   <location>
     <holdingSimple>
       <copyInformation>
@@ -141,7 +165,9 @@
   <location>
     <physicalLocation>Monastery of Gunda Gunde</physicalLocation>
   </location>
+
   <accessCondition>Digital files found on the Digital Scholarship Unit site are meant for research and private study used in compliance with copyright legislation.  Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from copyright holder. Please contact Archives and Special Collections for further information.</accessCondition>
+
   <recordInfo>
     <recordOrigin>{{ data.Bibliographic_Information }}</recordOrigin>
   </recordInfo>
