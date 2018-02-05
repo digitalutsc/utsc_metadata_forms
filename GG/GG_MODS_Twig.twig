@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}
+{% autoescape false %}
+{# for loop is for json objects. remove if using csv multi-importer #}
+<mods
+        xmlns="http://www.loc.gov/mods/v3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+    <titleInfo type="translated">
+        <title lang="eng">{{ data.book_title_english }}</title>
+    </titleInfo>
+    <titleInfo>
+        <title><![CDATA[ {{ data.book_title_original }} ]]></title>
+    </titleInfo>
+    <language>
+        <languageTerm authority="iso639-2b" type="code">gez</languageTerm>
+    </language>
+    <identifier type="local">{{ data.manuscript_number }}</identifier>
+    <identifier type="former"><![CDATA[  {{ data.former_identifiers }} ]]></identifier>
+
+    {% if data.name1 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm authority="marcrelator" type="text">{{ data.role1 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name1 }}]]></namePart>
+            <affiliation>{{ data.affiliationdepartment1 }}</affiliation>
+        </name>
+    {% endif %}
+
+    {% if data.name2 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm authority="marcrelator" type="text">{{ data.role2 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name2 }}]]></namePart>
+            <affiliation>{{ data.affiliationdepartment2 }}</affiliation>
+        </name>
+    {% endif %}
+
+    {% if data.name3 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm authority="marcrelator" type="text">{{ data.role3 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name3 }}]]></namePart>
+            <affiliation>{{ data.affiliationdepartment3 }}</affiliation>
+        </name>
+    {% endif %}
+
+    {% if data.name4 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm authority="marcrelator" type="text">{{ data.role4 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name4 }}]]></namePart>
+            <affiliation>{{ data.affiliationdepartment4 }}</affiliation>
+        </name>
+    {% endif %}
+
+    {% if data.name5 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm authority="marcrelator" type="text">{{ data.role5 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name5 }}]]></namePart>
+            <affiliation>{{ data.affiliationdepartment5 }}</affiliation>
+        </name>
+    {% endif %}
+
+    {% if data.name6 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm authority="marcrelator" type="text">{{ data.role6 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name6 }}]]></namePart>
+            <affiliation>{{ data.affiliationdepartment6 }}</affiliation>
+        </name>
+    {% endif %}
+
+    <abstract><![CDATA[ {{ data.abstract }} ]]></abstract>
+
+    {% if attribute(data, 'genre') %}
+        {% for genresplit in attribute(data, 'genre')|split (';') %}
+            <genre><![CDATA[{{ genresplit|trim }}]]></genre>
+        {% endfor %}
+    {% endif %}
+
+
+    {# clean up qualifiers if empty #}
+    <originInfo>
+
+        {% if data.date_created1 is not empty %}
+            <dateCreated{% if data.date_created_qualifier1 is not empty %} qualifier="{{ data.date_created_qualifier1 }}"{% endif %}>{{ data.date_created1 }}</dateCreated>
+            <dateCreated keyDate="yes">{{ data.keydate1 }}</dateCreated>
+        {% endif %}
+
+        {% if data.date_created2 is not empty %}
+            <dateCreated{% if data.date_created_qualifier2 is not empty %} qualifier="{{ data.date_created_qualifier2 }}"{% endif %}>{{ data.date_created2 }}</dateCreated>
+            <dateCreated keyDate="yes">{{ data.keydate2 }}</dateCreated>
+        {% endif %}
+
+
+        {% if data.date_created3 is not empty %}
+            <dateCreated{% if data.date_created_qualifier1 is not empty %} qualifier="{{ data.date_created_qualifier3 }}"{% endif %}>{{ data.date_created3 }}</dateCreated>
+            <dateCreated keyDate="yes">{{ data.keydate3 }}</dateCreated>
+        {% endif %}
+
+        <issuance>monographic</issuance>
+        <dateCaptured>{{ data.date_captured }}</dateCaptured>
+        <place>
+            <placeTerm authority="marccountry">{{ data.country_origininfo }}</placeTerm>
+        </place>
+        <place>
+            <placeTerm type="text">{{ data.place_origininfo }}</placeTerm>
+        </place>
+    </originInfo>
+
+
+    <physicalDescription>
+        <note type="medium">{{ data.medium }}</note>
+    </physicalDescription>
+    <physicalDescription>
+        <note type="binding">{{ data.binding }}</note>
+    </physicalDescription>
+    <physicalDescription>
+        <extent>{{ data.dimensions }}</extent>
+        <note><![CDATA[ {{ data.physical_description_notes }} ]]></note>
+    </physicalDescription>
+    <physicalDescription>
+        <note type="decoration"><![CDATA[ {{ data.decoration_description }} ]]></note>
+    </physicalDescription>
+
+    <note><![CDATA[{{ data.notes }}]]></note>
+
+    <subject>
+        <topic>{{ data.topic }}</topic>
+        <geographic/>
+        <temporal>{{ data.temporal1 }}</temporal>
+        <hierarchicalGeographic>
+            <continent>{{ data.continent }}</continent>
+            <country>{{ data.country }}</country>
+            <region>{{ data.region }}</region>
+            <province>{{ data.province }}</province>
+            <city>{{ data.city }}</city>
+            <citySection>{{ data.city_section }}</citySection>
+        </hierarchicalGeographic>
+        <cartographics>
+            <coordinates>14.1968735,38.5452165</coordinates>
+        </cartographics>
+    </subject>
+
+    <location>
+        <holdingSimple>
+            <copyInformation>
+                <form>electronic</form>
+                <subLocation>University of Toronto Scarborough</subLocation>
+            </copyInformation>
+        </holdingSimple>
+    </location>
+    <location>
+        <physicalLocation>Monastery of Gunda Gunde</physicalLocation>
+    </location>
+
+    <accessCondition>Digital files found on the Digital Scholarship Unit site are meant for research and private study used in compliance with copyright legislation.  Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from copyright holder. Please contact Archives and Special Collections for further information.</accessCondition>
+
+    <recordInfo>
+        <recordOrigin><![CDATA[ {{ data.bibliographic_information }}]]></recordOrigin>
+    </recordInfo>
+    <typeOfResource>text</typeOfResource>
+</mods>
+{% endautoescape %}
+
+{% endblock %}
