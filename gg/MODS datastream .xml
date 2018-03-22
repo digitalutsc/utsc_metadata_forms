@@ -1,0 +1,104 @@
+
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+  <titleInfo type="translated">
+    <title lang="eng">Psalter with Canticles</title>
+  </titleInfo>
+  <titleInfo>
+    <title> f. Ir: ዳዊት - Dawit;
+f. 1r,8fb: መዝሙር፡ ዘዳዊት። - The Psalter of Dawit; and passim in the beginning of several Psalms </title>
+  </titleInfo>
+  <name type="personal">
+    <role>
+      <roleTerm authority="marcrelator" type="text">researcher</roleTerm>
+    </role>
+    <namePart>Michael Gervers</namePart>
+    <affiliation>University of Toronto Scarborough, Department of Historical and Cultural Studies, Canada</affiliation>
+  </name>
+  <name type="personal">
+    <role>
+      <roleTerm authority="marcrelator" type="text">data contributor</roleTerm>
+    </role>
+    <namePart>Witold Witakowski</namePart>
+    <affiliation>Uppsala University, Department of Linguistics and Philology, Sweden</affiliation>
+  </name>
+  <name type="personal">
+    <role>
+      <roleTerm authority="marcrelator" type="text">owner</roleTerm>
+    </role>
+    <namePart>f. 1r: Holy (monastery of) Mary Gundä Gunde (ቅ[ድ]ስት፡ ማርያም፡ ጉንዳጉ[ን]ዴ፡ [sic!]); </namePart>
+    <affiliation></affiliation>
+  </name>
+  <name type="personal">
+    <role>
+      <roleTerm authority="marcrelator" type="text">first owner /donor; </roleTerm>
+    </role>
+    <namePart>᾽Abäbu Səbḥat, her baptismal name being Wälättä ᾽Arägawi (f. 166r,5-1fb);  </namePart>
+    <affiliation></affiliation>
+  </name>
+  <abstract> Text 1: ff. 1r,3-142r,12: 151 Psalms;  
+Text 2: ff. 142v,1-176r,end: Canticles of the Prophets: 
+The Prayer of Moses 1st, 2nd, 3rd (f. 142v,1), Prayer of Hanna, the mother of Samuel (f. 147v,8), of Hezekiah King of Judah (f. 148v,11), of Manasseh “the Prophet” (f. 149v,2), of Jonah “the Prophet” (f. 150v,9), of Daniel “the Prophet” (f. 151r,9), of the Three Youths (in the oven) (f. 152r,last), of Habbakuk (f. 153v,11), of Isaiah (f. 155v,1), of Mary (Magnificat) (f. 156v,3), of Zachariah (Benedictus) (f. 157r,2), of Simeon (Nunc dimittis) (f. 157v,6);  
+Text 3: ff. 158r,1-185v,end: Song of Songs (Mäḫaləyä mäḫaləy);  
+Text 4: ff. 166va,1-178rb,8: Praise of our Lady Mary (Wəddaseha lä-᾽əgzə᾽ətnä Maryam); (text in 2 columns);  
+Text 5: ff. 178rb,8-183vb,end: Praise and Thanksgivings (to Mary) (Wəddase wä-gənay); (text in 2 columns);  
+Text 6: ff. 184ra,1-189vb,end (not complete): a prayer: Listen, O Lord, to my prayer, Alleluya, Alleluya, … </abstract>
+  <note>Notes on daily readings, on upper margins: 
+f. 1r: Monday; f. 26r: Tuesday; f. 54r: Wednesday; f. 78r: Thursday; f. 110r: Friday;  
+ff. Iv-IVv, Vr (rearguard): empty</note>
+  <language>
+    <languageTerm authority="iso639-2" type="code">gez</languageTerm>
+  </language>
+  <typeOfResource>text</typeOfResource>
+  <identifier type="local">GG-216</identifier>
+  <identifier type="former">  HMML_216; ፻፸፫ [= 173] - f. Ir, upper margin, above the Gunda Gunde ownership note, written with a pencil on; C3-IV-77 (number provided by the Ethiopian Tourist Office) - on a small paper strip glued on f. 1r, lower margin </identifier>
+  <originInfo>
+    <issuance>monographic</issuance>
+    <dateCaptured>2006-11-11</dateCaptured>
+    <place>
+      <placeTerm authority="marccountry">Ethiopia</placeTerm>
+    </place>
+    <place>
+      <placeTerm type="text">Monastery of Gunda Gunde</placeTerm>
+    </place>
+  </originInfo>
+  <physicalDescription>
+    <extent>20.5 x 19 x 8.5 cm</extent>
+    <form>Vellum (parchment)</form>
+    <form type="binding">Two wooden boards, covered with well preserved leather envelop on each of them, but torn on the back;   </form>
+    <form type="decoration"> Heading decorations (harägs): ff. 1r, 47r, 54r, 94r, upper margin, 142r,4fb (end of Psalms), 157v,4fb (end of Canticles);  
+f. Vv (rearguard): two unfinished and unskilled drawings of crosses;   </form>
+    <note> Number of folios: 4 (I-IV) (II &amp; III not photographed) + 189 + 1(V); European foliation;  
+Number of quires: 26 (?);  
+Number of columns of the text: 1 (ff. 1-166r), 2 (ff. 166v-end);  
+Number of lines in columns In one-column text: 19 (Psalms), 18-19 (Canticles); 18-19 (in two-column text, ff. 166v-end) </note>
+  </physicalDescription>
+  <location>
+    <holdingSimple>
+      <copyInformation>
+        <form>electronic</form>
+        <subLocation>University of Toronto Scarborough</subLocation>
+      </copyInformation>
+    </holdingSimple>
+    <physicalLocation>Monastery of Gunda Gunde</physicalLocation>
+  </location>
+  <subject>
+    <topic></topic>
+    <geographic></geographic>
+    <temporal></temporal>
+    <hierarchicalGeographic>
+      <continent>Africa</continent>
+      <country>Ethiopia</country>
+      <region>wäräda (district) Irob, qäbäla ʽAraʽ;</region>
+      <province>Tigray</province>
+      <city></city>
+      <citySection>Monastery of Gunda Gunde</citySection>
+    </hierarchicalGeographic>
+    <cartographics>
+      <coordinates>14.1968735,38.5452165</coordinates>
+    </cartographics>
+  </subject>
+  <relatedItem type="isReferencedBy">
+    <note> </note>
+  </relatedItem>
+  <accessCondition>Digital files found on the Digital Scholarship Unit site are meant for research and private study used in compliance with copyright legislation.  Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from copyright holder. Please contact Archives and Special Collections for further information.</accessCondition>
+</mods>
