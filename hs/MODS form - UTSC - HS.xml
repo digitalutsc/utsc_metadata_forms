@@ -318,6 +318,41 @@
         </properties>
         <children/>
       </element>
+      <element name="note">
+        <properties>
+          <type>textarea</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Note</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>self::node()</path>
+              <context>parent</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>note</value>
+            </create>
+            <read>
+              <path>mods:note</path>
+              <context>parent</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
       <element name="languages">
         <properties>
           <type>tags</type>
@@ -704,66 +739,6 @@
                 </create>
                 <read>
                   <path>mods:publisher</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>NULL</delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-          <element name="country">
-            <properties>
-              <type>textfield</type>
-              <access>TRUE</access>
-              <required>FALSE</required>
-              <title>Country</title>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>xml</type>
-                  <prefix>NULL</prefix>
-                  <value>&lt;place&gt;&lt;placeTerm authority='marccountry'
-                    type='code'&gt;%value%&lt;/placeTerm&gt;&lt;/place&gt;</value>
-                </create>
-                <read>
-                  <path>mods:place/mods:placeTerm[@type = 'code']</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>NULL</delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-          <element name="place">
-            <properties>
-              <type>textfield</type>
-              <access>TRUE</access>
-              <required>FALSE</required>
-              <title>Place</title>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>xml</type>
-                  <prefix>NULL</prefix>
-                  <value>&lt;place&gt;&lt;placeTerm
-                    type="text"&gt;%value%&lt;/placeTerm&gt;&lt;/place&gt;</value>
-                </create>
-                <read>
-                  <path>mods:place/mods:placeTerm[@type = 'text']</path>
                   <context>parent</context>
                 </read>
                 <update>
@@ -1415,7 +1390,62 @@
           </element>
         </children>
       </element>
-      <element name="relatedItem">
+      <element name="location-digital">
+        <properties>
+          <type>tags</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Holdings - Digital</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="subLocation">
+            <properties>
+              <type>tag</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Digital</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;location&gt;&lt;holdingSimple&gt;&lt;copyInformation&gt;&lt;form&gt;electronic&lt;/form&gt;&lt;subLocation&gt;%value%&lt;/subLocation&gt;&lt;/copyInformation&gt;&lt;/holdingSimple&gt;&lt;/location&gt;</value>
+                </create>
+                <read>
+                  <path>mods:location/mods:holdingSimple/mods:copyInformation/mods:subLocation</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+        </children>
+      </element>
+      <element name="location-print">
         <properties>
           <type>textfield</type>
           <access>TRUE</access>
@@ -1426,7 +1456,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Related Item</title>
+          <title>Holdings - Print</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -1435,17 +1465,20 @@
               <schema/>
               <type>xml</type>
               <prefix>NULL</prefix>
-              <value>&lt;relatedItem type="host"&gt;&lt;titleInfo&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;&lt;/relatedItem&gt;</value>
+              <value>&lt;location&gt;&lt;physicalLocation&gt;%value%&lt;/physicalLocation&gt;&lt;/location&gt;</value>
             </create>
             <read>
-              <path>mods:relatedItem/mods:titleInfo/mods:title</path>
-              <context>document</context>
+              <path>mods:location/mods:physicalLocation</path>
+              <context>parent</context>
             </read>
             <update>
               <path>self::node()</path>
               <context>self</context>
             </update>
-            <delete>NULL</delete>
+            <delete>
+              <path>self::node()</path>
+              <context>self</context>
+            </delete>
           </actions>
         </properties>
         <children/>
@@ -1474,41 +1507,6 @@
             </create>
             <read>
               <path>mods:accessCondition</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
-      <element name="note">
-        <properties>
-          <type>textarea</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <title>Note</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>element</type>
-              <prefix>NULL</prefix>
-              <value>note</value>
-            </create>
-            <read>
-              <path>mods:note</path>
               <context>parent</context>
             </read>
             <update>
