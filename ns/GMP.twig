@@ -14,48 +14,36 @@
         {% endif %}
     </titleInfo>
 
-    {% if data.mods_name_corporate_role_roleTerm_text_ms is not empty%}
-        {% set role_corporate = data.mods_name_corporate_role_roleTerm_text_ms|split(':') %}
-        <name type="corporate">
+    name_role_teacher	name_role_interviewee	name_role_interviewer
+
+    {% if data.mods_name_personal_role_roleTerm_text_ms_teacher is not empty%}
+        <name type="personal">
             <role>
-                <roleTerm type="text">{{ role_corporate[0] }}</roleTerm>
+                <roleTerm type="text">teacher</roleTerm>
             </role>
-            <namePart><![CDATA[{{ role_corporate[1] }}]]></namePart>
+            <namePart><![CDATA[{{ data.mods_name_personal_role_roleTerm_text_ms_teacher }}]]></namePart>
         </name>
     {% endif %}
 
-    {% if data.mods_name_personal_role_roleterm_text_ms_1 is not empty%}
-        {% set role_person1 = data.mods_name_personal_role_roleterm_text_ms_1|split(':') %}
+    {% if data.mods_name_personal_role_roleTerm_text_ms_interviewee is not empty%}
         <name type="personal">
             <role>
-                <roleTerm type="text">{{ role_person1[0] }}</roleTerm>
+                <roleTerm type="text">interviewee</roleTerm>
             </role>
-            <namePart><![CDATA[{{ role_person1[1] }}]]></namePart>
+            <namePart><![CDATA[{{ data.mods_name_personal_role_roleTerm_text_ms_interviewee }}]]></namePart>
         </name>
     {% endif %}
 
-    {% if data.mods_name_personal_role_roleterm_text_ms_2 is not empty%}
-        {% set role_person2 = data.mods_name_personal_role_roleterm_text_ms_2|split(':') %}
+    {% if data.mods_name_personal_role_roleTerm_text_ms_interviewer is not empty%}
         <name type="personal">
             <role>
-                <roleTerm type="text">{{ role_person2[0] }}</roleTerm>
+                <roleTerm type="text">interviewer</roleTerm>
             </role>
-            <namePart><![CDATA[{{ role_person2[1] }}]]></namePart>
-        </name>
-    {% endif %}
-
-    {% if data.mods_name_personal_role_roleterm_text_ms_3 is not empty%}
-        {% set role_person3 = data.mods_name_personal_role_roleterm_text_ms_3|split(':') %}
-        <name type="personal">
-            <role>
-                <roleTerm type="text">{{ role_person3[0] }}</roleTerm>
-            </role>
-            <namePart><![CDATA[{{ role_person3[1] }}]]></namePart>
+            <namePart><![CDATA[{{ data.mods_name_personal_role_roleTerm_text_ms_interviewer }}]]></namePart>
         </name>
     {% endif %}
 
     <typeOfResource>{{  data.mods_typeofresource_ms }}</typeOfResource>
-    <genre>{{  data.mods_genre_aat }}</genre>
     <language>
         {% for language in data.mods_language_languageterm_code_ms |split ('|') %}
             <languageTerm languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
@@ -71,17 +59,20 @@
         <place>
             <placeTerm type="text">{{  data.mods_origininfo_place_placeterm_text_ms }}</placeTerm>
         </place>
-        <dateCreated>{{  data.mods_origininfo_datecreated }}</dateCreated>
-        {% if data.mods_origininfo_datecreated_start is not empty%}
-            <dateCreated point="start">{{ data.mods_origininfo_datecreated_start }}</dateCreated>
+        <dateCreated>{{  data.mods_originInfo_dateCreated_start }}</dateCreated>
+        {% if data.datecreated_start is not empty%}
+            <dateCreated point="start">{{ data.mods_originInfo_dateCreated_start }}</dateCreated>
         {% endif %}
-        {% if data.mods_origininfo_datecreated_end is not empty%}
-            <dateCreated point="end">{{ data.mods_origininfo_datecreated_end }}</dateCreated>
+        {% if data.mods_originInfo_dateCreated_end is not empty%}
+            <dateCreated point="end">{{ data.mods_originInfo_dateCreated_end }}</dateCreated>
         {% endif %}
+        <copyrightDate>{{  data.mods_origininfo_copyrightdate }}</copyrightDate>
     </originInfo>
 
     <physicalDescription>
         <extent><![CDATA[ {{ data.mods_physicaldescription_extent_ms }}]]></extent>
+        <form><![CDATA[ {{ data.mods_physicaldescription_form_authority_marcsmd_ms }}]]></form>
+        <note><![CDATA[ {{ data.mods_physicaldescription_note_ms }}]]></note>
     </physicalDescription>
 
     {% if data.mods_relateditem_host_titleinfo_title_ms is not empty%}
@@ -106,20 +97,9 @@
             <province>{{ data.mods_subject_hierarchicalgeographic_province_ms }}</province>
             <region>{{ data.mods_subject_hierarchicalgeographic_region_ms }}</region>
             <city>{{ data.mods_subject_hierarchicalgeographic_city_ms }}</city>
-            <citysection>{{ data.mods_subject_hierarchicalgeographic_citysection_ms }}</citysection>
+            <citysection>{{ data.mods_subject_hierarchicalGeographic_citySection_ms }}</citysection>
         </hierarchicalGeographic>
     </subject>
-
-    <location>
-        <holdingSimple>
-            <copyInformation>
-                <form>electronic</form>
-                <subLocation>University of Toronto Scarborough</subLocation>
-            </copyInformation>
-        </holdingSimple>
-        <physicalLocation>University of Toronto Scarborough Library, Archives & Special Collections</physicalLocation>
-    </location>
-
 
 </mods>
 {% endautoescape %}

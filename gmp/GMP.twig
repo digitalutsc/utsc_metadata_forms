@@ -57,8 +57,8 @@
     <typeOfResource>{{  data.mods_typeofresource_ms }}</typeOfResource>
     <genre>{{  data.mods_genre_aat }}</genre>
     <language>
-        {% for language in data.mods_language_languageTerm_code_ms |split ('|') %}
-            <languageTerm languageTerm authority="iso639-2" type="code">{{ data.language	 }}</languageTerm>
+        {% for language in data.mods_language_languageterm_code_ms |split ('|') %}
+            <languageTerm languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
         {% endfor %}
     </language>
 
@@ -109,6 +109,7 @@
             <province>{{ data.mods_subject_hierarchicalgeographic_province_ms }}</province>
             <region>{{ data.mods_subject_hierarchicalgeographic_region_ms }}</region>
             <city>{{ data.mods_subject_hierarchicalgeographic_city_ms }}</city>
+            <citysection>{{ data.mods_subject_hierarchicalgeographic_citysection_ms }}</citysection>
         </hierarchicalGeographic>
     </subject>
 
