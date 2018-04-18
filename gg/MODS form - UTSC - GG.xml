@@ -240,16 +240,16 @@
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
-                    <com>commissioner</com>
+                    <commissioner>commissioner</commissioner>
                     <cataloguer>cataloguer</cataloguer>
-                    <cre>creator</cre>
-                    <aut>author</aut>
-                    <dnr>donor</dnr>
-                    <dtc>data contributor</dtc>
-                    <own>owner</own>
-                    <trl>translator</trl>
-                    <scr>scribe</scr>
-                    <res>researcher</res>
+                    <creator>creator</creator>
+                    <author>author</author>
+                    <donor>donor</donor>
+                    <data_contributor>data contributor</data_contributor>
+                    <owner>owner</owner>
+                    <translator>translator</translator>
+                    <scribe>scribe</scribe>
+                    <researcher>researcher</researcher>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -1124,7 +1124,7 @@
                   <value>form</value>
                 </create>
                 <read>
-                  <path>mods:form</path>
+                  <path>mods:form[not(@*)]</path>
                   <context>parent</context>
                 </read>
                 <update>
@@ -1173,7 +1173,7 @@
           </element>
           <element name="formDecoration">
             <properties>
-              <type>textfield</type>
+              <type>textarea</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>

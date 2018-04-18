@@ -144,7 +144,9 @@
     </location>
 
     <subject>
-        <topic>{{ data.topic }}</topic>
+        {% for topic_item in data.topic |split ('|') %}
+            <topic><![CDATA[ {{ topic_item|trim }} ]]></topic>
+        {% endfor %}
         <geographic/>
         <temporal>{{ data.temporal1 }}</temporal>
         <hierarchicalGeographic>
