@@ -847,6 +847,48 @@
             </properties>
             <children/>
           </element>
+          <element name="reformattingQuality">
+            <properties>
+              <type>select</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value></default_value>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <options>
+                <index key=""></index>
+                <index key="access">access</index>
+                <index key="preservation">preservation</index>
+                <index key="replacement">replacement</index>
+              </options>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Reformatting Quality</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>reformattingQuality</value>
+                </create>
+                <read>
+                  <path>mods:reformattingQuality</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
           <element name="note">
             <properties>
               <type>textfield</type>
