@@ -58,7 +58,7 @@
     <genre>{{  data.mods_genre_aat }}</genre>
     <language>
         {% for language in data.mods_language_languageterm_code_ms |split ('|') %}
-            <languageTerm languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
+            <languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
         {% endfor %}
     </language>
 
