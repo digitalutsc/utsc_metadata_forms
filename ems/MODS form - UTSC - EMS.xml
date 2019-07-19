@@ -71,7 +71,7 @@
               <collapsible>FALSE</collapsible>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
-              <maxlength>10000</maxlength>
+              <maxlength>1000</maxlength>
               <multiple>FALSE</multiple>
               <required>TRUE</required>
               <resizable>FALSE</resizable>
