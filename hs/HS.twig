@@ -103,11 +103,14 @@
         {% endfor %}
         <hierarchicalGeographic>
             <continent>{{ data.mods_subject_hierarchicalgeographic_continent_ms }}</continent>
+            <island>{{ mods_subject_hierarchicalgeographic_island_ms }}</island>
             <country>{{ data.mods_subject_hierarchicalgeographic_country_ms }}</country>
             <state>{{ data.mods_subject_hierarchicalgeographic_state_ms }}</state>
             <province>{{ data.mods_subject_hierarchicalgeographic_province_ms }}</province>
             <region>{{ data.mods_subject_hierarchicalgeographic_region_ms }}</region>
-            <city>{{ data.mods_subject_hierarchicalgeographic_city_ms }}</city>
+            {% for city in data.mods_subject_hierarchicalgeographic_city_ms |split ('|') %}
+            <city>{{ city|trim }}</city>
+            {% endfor %}
             <citysection>{{ data.mods_subject_hierarchicalgeographic_citysection_ms }}</citysection>
         </hierarchicalGeographic>
     </subject>
