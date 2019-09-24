@@ -79,6 +79,9 @@
         {% if data.mods_origininfo_datecreated_end is not empty%}
             <dateCreated point="end">{{ data.mods_origininfo_datecreated_end }}</dateCreated>
         {% endif %}
+        {% if data.mods_origininfo_datecaptured is not empty%}
+            <dateCaptured>{{ data.mods_origininfo_datecaptured }}</dateCaptured>
+        {% endif %}
     </originInfo>
 
     <physicalDescription>
