@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}
+{% autoescape false %}
+<mods
+        xmlns="http://www.loc.gov/mods/v3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+
+    <titleInfo>
+        <title lang="eng"><![CDATA[ {{ data.mods_titleinfo_title_ms }} ]]></title>
+        {% if data.mods_titleinfo_subtitle_ms is not empty%}
+            <subTitle></subTitle>
+        {% endif %}
+    </titleInfo>
+
+    {% if data.name_personal_role_1 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm type="text">{{ data.name_personal_role_1 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name_personal_namepart_1 }}]]></namePart>
+        </name>
+    {% endif %}
+
+    {% if data.name_personal_role_2 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm type="text">{{ data.name_personal_role_2 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name_personal_namepart_2 }}]]></namePart>
+        </name>
+    {% endif %}
+
+    {% if data.name_personal_role_3 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm type="text">{{ data.name_personal_role_3 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name_personal_namepart_3 }}]]></namePart>
+        </name>
+    {% endif %}
+
+    {% if data.name_personal_role_4 is not empty%}
+        <name type="personal">
+            <role>
+                <roleTerm type="text">{{ data.name_personal_role_4 }}</roleTerm>
+            </role>
+            <namePart><![CDATA[{{ data.name_personal_namepart_4 }}]]></namePart>
+        </name>
+    {% endif %}
+
+    <typeOfResource>{{  data.mods_typeofresource_ms }}</typeOfResource>
+    <genre></genre>
+    <language>
+        {% for language in data.mods_language_languageterm_code_ms |split ('|') %}
+            <languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
+        {% endfor %}
+    </language>
+
+    <abstract><![CDATA[ {{ data.mods_abstract_ms }} ]]></abstract>
+    <identifier type="local">{{ data.mods_identifier_local_ms }}</identifier>
+
+    <accessCondition><![CDATA[ {{ data.mods_rights_ms }} ]]></accessCondition>
+
+    <originInfo>
+        <publisher>{{  data.mods_origininfo_publisher_ms }}</publisher>
+        <place>
+            <placeTerm type="text">{{  data.mods_origininfo_place_placeterm_text_ms }}</placeTerm>
+        </place>
+        <place>
+            <placeTerm authority="marccountry" type="code">{{  data.mods_origininfo_place_placeterm_country_ms }}</placeTerm>
+        </place>
+        <dateCreated>{{  data.mods_origininfo_datecreated }}</dateCreated>
+        {% if data.mods_origininfo_datecreated_start is not empty%}
+            <dateCreated point="start">{{ data.mods_origininfo_datecreated_start }}</dateCreated>
+        {% endif %}
+        {% if data.mods_origininfo_datecreated_start is not empty%}
+            <dateCreated point="end">{{ data.mods_origininfo_datecreated_end }}</dateCreated>
+        {% endif %}
+        <copyrightDate></copyrightDate>
+    </originInfo>
+
+    <physicalDescription>
+        <extent></extent>
+        <form></form>
+        <note></note>
+    </physicalDescription>
+
+    {% if data.mods_relateditem_collection_titleinfo_title_ms is not empty%}
+        <relatedItem type="collection">
+            <titleInfo>
+                <title><![CDATA[ {{ data.mods_relateditem_collection_titleinfo_title_ms }} ]]></title>
+            </titleInfo>
+        </relatedItem>
+    {% endif %}
+
+    <subject>
+        {% for topic in data.mods_subject_topic_ms |split ('|') %}
+            <topic><![CDATA[ {{ topic|trim }} ]]></topic>
+        {% endfor %}
+        {% for temporal in data.mods_subject_temporal_ms |split ('|') %}
+            <temporal></temporal>
+        {% endfor %}
+        <hierarchicalGeographic>
+            <continent>{{ data.mods_subject_hierarchicalgeographic_continent_ms }}</continent>
+            <country>{{ data.mods_subject_hierarchicalgeographic_country_ms }}</country>
+            <province>{{ data.mods_subject_hierarchicalgeographic_province_ms }}</province>
+            <region>{{ data.mods_subject_hierarchicalgeographic_region_ms }}</region>
+            <city>{{ data.mods_subject_hierarchicalgeographic_city_ms }}</city>
+            <citysection></citysection>
+        </hierarchicalGeographic>
+    </subject>
+    <recordinfo>
+        <recordInfoNote type="courseCode"><![CDATA[ {{ data.recordinfo_note_coursecode }} ]]></recordInfoNote>
+        <recordInfoNote type="courseYear"><![CDATA[ {{ data.recordinfo_note_courseyear }} ]]></recordInfoNote>
+        <recordInfoNote type="courseTerm"><![CDATA[ {{ data.recordinfo_note_courseterm }} ]]></recordInfoNote>
+    </recordinfo>
+
+</mods>
+{% endautoescape %}
+{% endblock %}
