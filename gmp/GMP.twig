@@ -6,16 +6,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
-
     <titleInfo>
-        <title lang="eng"><![CDATA[ {{ data.mods_titleinfo_title_ms }} ]]></title>
-        {% if data.mods_titleinfo_subtitle_ms is not empty%}
-            <subTitle>{{ data.mods_titleinfo_subtitle_ms }}</subTitle>
+        <title lang="eng"><![CDATA[ {{ data.mods_titleInfo_title }} ]]></title>
+        {% if data.mods_titleInfo_subTitle is not empty%}
+            <subTitle>{{ data.mods_titleInfo_subTitle }}</subTitle>
         {% endif %}
     </titleInfo>
-
-    {% if data.mods_name_corporate_role_roleTerm_text_ms is not empty%}
-        {% set role_corporate = data.mods_name_corporate_role_roleTerm_text_ms|split(':') %}
+    {% if data.mods_name_corporate_role_roleTerm_text is not empty%}
+        {% set role_corporate = data.mods_name_corporate_role_roleTerm_text|split(':') %}
         <name type="corporate">
             <role>
                 <roleTerm type="text">{{ role_corporate[0] }}</roleTerm>
@@ -23,9 +21,8 @@
             <namePart><![CDATA[{{ role_corporate[1] }}]]></namePart>
         </name>
     {% endif %}
-
-    {% if data.mods_name_personal_role_roleterm_text_ms_1 is not empty%}
-        {% set role_person1 = data.mods_name_personal_role_roleterm_text_ms_1|split(':') %}
+    {% if data.mods_name_personal_role_roleTerm_text_1 is not empty%}
+        {% set role_person1 = data.mods_name_personal_role_roleTerm_text_1|split(':') %}
         <name type="personal">
             <role>
                 <roleTerm type="text">{{ role_person1[0] }}</roleTerm>
@@ -33,9 +30,8 @@
             <namePart><![CDATA[{{ role_person1[1] }}]]></namePart>
         </name>
     {% endif %}
-
-    {% if data.mods_name_personal_role_roleterm_text_ms_2 is not empty%}
-        {% set role_person2 = data.mods_name_personal_role_roleterm_text_ms_2|split(':') %}
+    {% if data.mods_name_personal_role_roleTerm_text_2 is not empty%}
+        {% set role_person2 = data.mods_name_personal_role_roleTerm_text_2|split(':') %}
         <name type="personal">
             <role>
                 <roleTerm type="text">{{ role_person2[0] }}</roleTerm>
@@ -43,9 +39,8 @@
             <namePart><![CDATA[{{ role_person2[1] }}]]></namePart>
         </name>
     {% endif %}
-
-    {% if data.mods_name_personal_role_roleterm_text_ms_3 is not empty%}
-        {% set role_person3 = data.mods_name_personal_role_roleterm_text_ms_3|split(':') %}
+    {% if data.mods_name_personal_role_roleTerm_text_3 is not empty%}
+        {% set role_person3 = data.mods_name_personal_role_roleTerm_text_3|split(':') %}
         <name type="personal">
             <role>
                 <roleTerm type="text">{{ role_person3[0] }}</roleTerm>
@@ -53,19 +48,16 @@
             <namePart><![CDATA[{{ role_person3[1] }}]]></namePart>
         </name>
     {% endif %}
-
-    <typeOfResource>{{  data.mods_typeofresource_ms }}</typeOfResource>
+    <typeOfResource>{{  data.mods_typeOfResource }}</typeOfResource>
     <genre>{{  data.mods_genre_aat }}</genre>
     <language>
-        {% for language in data.mods_language_languageterm_code_ms |split ('|') %}
+        {% for language in data.mods_language_languageTerm |split ('|') %}
             <languageTerm languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
         {% endfor %}
     </language>
-
-    <abstract><![CDATA[ {{ data.mods_abstract_ms }} ]]></abstract>
-    <identifier type="local">{{ data.mods_identifier_local_ms }}</identifier>
-    <accessCondition>Digital files found on the Digital Scholarship Unit site are meant for research and private study used in compliance with copyright legislation.  Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from copyright holder. Please contact Archives and Special Collections for further information.</accessCondition>
-
+    <abstract><![CDATA[ {{ data.mods_abstract }} ]]></abstract>
+    <identifier type="local">{{ data.mods_identifier_local}}</identifier>
+    <accessCondition><![CDATA[Digital files found in the UTSC Library's Digital Collections are meant for research and private study used in compliance with copyright legislation. Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from the copyright holder. Please contact UTSC Library, Archives & Special Collections for further information.]]></accessCondition>
     <originInfo>
         <publisher>{{  data.mods_origininfo_publisher_ms }}</publisher>
         <place>
@@ -80,13 +72,11 @@
         {% endif %}
         <copyrightDate>{{  data.mods_origininfo_copyrightdate }}</copyrightDate>
     </originInfo>
-
     <physicalDescription>
         <extent><![CDATA[ {{ data.mods_physicaldescription_extent_ms }}]]></extent>
         <form><![CDATA[ {{ data.mods_physicaldescription_form_authority_marcsmd_ms }}]]></form>
         <note><![CDATA[ {{ data.mods_physicaldescription_note_ms }}]]></note>
     </physicalDescription>
-
     {% if data.mods_relateditem_host_titleinfo_title_ms is not empty%}
         <relatedItem type="host">
             <titleInfo>
@@ -94,7 +84,6 @@
             </titleInfo>
         </relatedItem>
     {% endif %}
-
     <subject>
         {% for topic in data.mods_subject_topic_ms |split ('|') %}
             <topic><![CDATA[ {{ topic|trim }} ]]></topic>
@@ -112,7 +101,6 @@
             <citysection>{{ data.mods_subject_hierarchicalgeographic_citysection_ms }}</citysection>
         </hierarchicalGeographic>
     </subject>
-
 </mods>
 {% endautoescape %}
 {% endblock %}
