@@ -48,59 +48,94 @@
             <namePart><![CDATA[{{ role_person3[1] }}]]></namePart>
         </name>
     {% endif %}
-    <typeOfResource>{{  data.mods_typeOfResource }}</typeOfResource>
-    <genre>{{  data.mods_genre_aat }}</genre>
+    <typeOfResource>{{ data.mods_typeOfResource }}</typeOfResource>
+    <genre><![CDATA[{{ data.mods_genre_aat }}]]></genre>
+    <abstract><![CDATA[{{ data.description }}]]></abstract>
     <language>
         {% for language in data.mods_language_languageTerm |split ('|') %}
             <languageTerm languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
         {% endfor %}
     </language>
-    <abstract><![CDATA[ {{ data.mods_abstract }} ]]></abstract>
-    <identifier type="local">{{ data.mods_identifier_local}}</identifier>
-    <accessCondition><![CDATA[Digital files found in the UTSC Library's Digital Collections are meant for research and private study used in compliance with copyright legislation. Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from the copyright holder. Please contact UTSC Library, Archives & Special Collections for further information.]]></accessCondition>
     <originInfo>
-        <publisher>{{  data.mods_origininfo_publisher_ms }}</publisher>
+        <publisher>{{ data.mods_originInfo_publisher }}</publisher>
         <place>
-            <placeTerm type="text">{{  data.mods_origininfo_place_placeterm_text_ms }}</placeTerm>
+            <placeTerm type="text">{{ data.mods_originInfo_place_placeTerm_text }}</placeTerm>
         </place>
-        <dateCreated>{{  data.mods_origininfo_datecreated }}</dateCreated>
-        {% if data.mods_origininfo_datecreated_start is not empty%}
-            <dateCreated point="start">{{ data.mods_origininfo_datecreated_start }}</dateCreated>
+        <dateCreated>{{  data.mods_originInfo_dateCreated }}</dateCreated>
+        {% if data.mods_originInfo_dateCreated_start is not empty%}
+            <dateCreated point="start">{{ data.mods_originInfo_dateCreated_start }}</dateCreated>
         {% endif %}
-        {% if data.mods_origininfo_datecreated_start is not empty%}
-            <dateCreated point="end">{{ data.mods_origininfo_datecreated_end }}</dateCreated>
+        {% if data.mods_originInfo_dateCreated_end is not empty%}
+            <dateCreated point="end">{{ data.mods_originInfo_dateCreated_end }}</dateCreated>
         {% endif %}
-        <copyrightDate>{{  data.mods_origininfo_copyrightdate }}</copyrightDate>
+        <copyrightDate>{{ data.mods_originInfo_copyrightDate }}</copyrightDate>
     </originInfo>
     <physicalDescription>
-        <extent><![CDATA[ {{ data.mods_physicaldescription_extent_ms }}]]></extent>
-        <form><![CDATA[ {{ data.mods_physicaldescription_form_authority_marcsmd_ms }}]]></form>
-        <note><![CDATA[ {{ data.mods_physicaldescription_note_ms }}]]></note>
+        <form authority="smd"><![CDATA[ {{ data.mods_physicalDescription_form_authority_marcsmd }}]]></form>
+        <extent><![CDATA[ {{ data.mods_physicalDescription_extent }}]]></extent>
+        <reformattingQuality><![CDATA[ {{ data.mods_reformatting_quality }}]]></reformattingQuality>
+        <note><![CDATA[ {{ data.mods_physicalDescription_note }}]]></note>
+        <digitalOrigin><![CDATA[ {{ data.mods_physicalDescription_digitalOrigin }}]]></digitalOrigin>
+        <internetMediaType><![CDATA[ {{ data.mods_physicalDescription_internetMediaType }}]]></internetMediaType>
     </physicalDescription>
-    {% if data.mods_relateditem_host_titleinfo_title_ms is not empty%}
-        <relatedItem type="host">
-            <titleInfo>
-                <title><![CDATA[ {{ data.mods_relateditem_host_titleinfo_title_ms }} ]]></title>
-            </titleInfo>
-        </relatedItem>
-    {% endif %}
-    <subject>
-        {% for topic in data.mods_subject_topic_ms |split ('|') %}
+    <subject authority="local">
+        {% for topic in data.mods_subject_topic |split ('|') %}
             <topic><![CDATA[ {{ topic|trim }} ]]></topic>
         {% endfor %}
-        {% for temporal in data.mods_subject_temporal_ms |split ('|') %}
+        {% for geographic in data.mods_subject_geographic |split ('|') %}
+            <geographic><![CDATA[ {{ geographic|trim }} ]]></geographic>
+        {% endfor %}
+        {% for temporal in data.mods_subject_temporal |split ('|') %}
             <temporal><![CDATA[ {{ temporal|trim }} ]]></temporal>
         {% endfor %}
+        {% for subjectname in data.mods_subject_name |split ('|') %}
+        <name type="personal">
+            <namePart>{{ subjectname|trim }}</namePart>
+        </name>
+        {% endfor %}
         <hierarchicalGeographic>
-            <continent>{{ data.mods_subject_hierarchicalgeographic_continent_ms }}</continent>
-            <country>{{ data.mods_subject_hierarchicalgeographic_country_ms }}</country>
-            <state>{{ data.mods_subject_hierarchicalgeographic_state_ms }}</state>
-            <province>{{ data.mods_subject_hierarchicalgeographic_province_ms }}</province>
-            <region>{{ data.mods_subject_hierarchicalgeographic_region_ms }}</region>
-            <city>{{ data.mods_subject_hierarchicalgeographic_city_ms }}</city>
-            <citysection>{{ data.mods_subject_hierarchicalgeographic_citysection_ms }}</citysection>
+            <continent><![CDATA[{{ data.mods_subject_hierarchicalGeographic_continent }}]]></continent>
+            <country><![CDATA[{{ data.mods_subject_hierarchicalGeographic_country }}]]></country>
+            <state><![CDATA[{{ data.mods_subject_hierarchicalGeographic_state }}]]></state>
+            <province><![CDATA[{{ data.mods_subject_hierarchicalGeographic_province }}]]></province>
+            <region><![CDATA[{{ data.mods_subject_hierarchicalGeographic_region }}]]></region>
+            <county><![CDATA[<{{ data.mods_subject_hierarchicalGeographic_county }}]]></county>
+            <island><![CDATA[{{ data.mods_subject_hierarchicalGeographic_island }}]]></island>
+            <city><![CDATA[{{ data.mods_subject_hierarchicalGeographic_city }}]]></city>
+            <citysection><![CDATA[{{ data.mods_subject_hierarchicalGeographic_citysection }}]]></citysection>
         </hierarchicalGeographic>
+        <cartographics>
+           <coordinates><![CDATA[{{ data.mods_subject_hierarchicalGeographic_citysection }}]]></coordinates>
+        </cartographics>
     </subject>
+    {% if data.mods_relatedItem_host_titleInfo_title is not empty %}
+    <relatedItem type="host">
+        <titleInfo>
+            <title><![CDATA[{{ data.mods_relatedItem_host_titleInfo_title }}]]></title>
+        </titleInfo>
+    </relatedItem>
+    {% endif %}
+    {% if data.mods_accessCondition is not empty%}
+    <accessCondition><![CDATA[ {{ data.mods_accessCondition }}]]></accessCondition>
+    {% else %}
+    <accessCondition><![CDATA[ Digital files found in the UTSC Library's Digital Collections are meant for research and private study used in compliance with copyright legislation. Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from the copyright holder. Please contact UTSC Library, Archives & Special Collections for further information.]]></accessCondition>
+    {% endif %}
+    <location>
+        <url usage="primary display"><![CDATA[{{ data.mods_location }}]]></url>
+    </location>
+    <identifier type="uri">{{ data.mods_URI_PID}}</identifier>
+    <identifier type="local"><![CDATA[{{ data.mods_identifier_local}}]]></identifier>
+    <note><![CDATA[{{ data.note }}]]></note>
+    <recordInfo>
+        <languageOfCataloging>
+        {% if data.mods_recordInfo_LangOfCataloguing_code is not empty %}
+            <languageTerm authority="iso639-2" type="code">{{  data.mods_recordInfo_LangOfCataloguing_code }}</languageTerm>
+        {% else %}
+        {# Assume language of cataloguing is eng #}
+            <languageTerm authority="iso639-2" type="code">eng</languageTerm>
+        {% endif %}
+        </languageOfCataloging>
+    </recordInfo>
 </mods>
 {% endautoescape %}
 {% endblock %}
