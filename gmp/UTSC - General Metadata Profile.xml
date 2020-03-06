@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3">
   <properties>
     <root_name>mods</root_name>
@@ -621,7 +621,7 @@ Do not use any qualifiers or typographical symbols to express uncertainty. Expre
               <description>
 The ending point for the create date.
 
-Enter the end date. Do not use any qualifiers or typographical symbols to express uncertainty. Express in ISO 8601.
+Enter the end date. Do not use any qualifiers or typographical symbols to express uncertainty. Express in ISO 8601. 
 
 https://en.wikipedia.org/wiki/ISO_8601
 </description>
@@ -662,7 +662,7 @@ https://en.wikipedia.org/wiki/ISO_8601
               <collapsible>FALSE</collapsible>
               <description>A date in which item is copyrighted.
 
-Do not use any qualifiers or typographical symbols to express uncertainty. Express in ISO 8601.
+Do not use any qualifiers or typographical symbols to express uncertainty. Express in ISO 8601. 
 
 https://en.wikipedia.org/wiki/ISO_8601
 
@@ -1012,7 +1012,7 @@ https://en.wikipedia.org/wiki/ISO_8601
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
               <description>The method by which a resource achieved digital form.
-See additional information here:
+See additional information here: 
 https://www.loc.gov/standards/mods/userguide/physicaldescription.html#digitalorigin</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
@@ -1149,7 +1149,46 @@ https://www.loc.gov/standards/mods/userguide/physicaldescription.html#digitalori
               <title>Topic</title>
               <tree>TRUE</tree>
             </properties>
-            <children/>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>A term representing primary topic(s) on which the item focuses, that are not included in other subject fields. See additional information here: https://www.loc.gov/standards/mods/userguide/subject.html#topic</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>topic</value>
+                    </create>
+                    <read>
+                      <path>mods:topic</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
           </element>
           <element name="geographic">
             <properties>
@@ -1157,8 +1196,7 @@ https://www.loc.gov/standards/mods/userguide/physicaldescription.html#digitalori
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>
-Used for geographic subject terms that are not appropriate for the &lt;hierarchicalGeographic&gt; element. See additional information here:
+              <description>Used for geographic subject terms that are not appropriate for the &lt;hierarchicalGeographic&gt; element. See additional information here: 
 https://www.loc.gov/standards/mods/userguide/subject.html#geographic
 </description>
               <disabled>FALSE</disabled>
@@ -1264,25 +1302,25 @@ https://www.loc.gov/standards/mods/userguide/subject.html#geographic
               </element>
             </children>
           </element>
-          <element name="name">
+          <element name="subject_name">
             <properties>
-              <type>tabs</type>
+              <type>tags</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>A name used as a subject. The name of a person, organization, or event (conference, meeting, etc.). The name should be in the order it would regularly appear (&#x2018;First Name Last Name&#x2019; rather than, for example, &#x2018;Last Name, First Name&#x2019;)</description>
+              <description>A name used as a subject. Only put personal names into this field. The name should be in the order it would regularly appear (&#x2018;First Name Last Name&#x2019; rather than, for example, &#x2018;Last Name, First Name&#x2019;)</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Subject - Person/Organization</title>
+              <title>Name</title>
               <tree>TRUE</tree>
             </properties>
             <children>
               <element name="0">
                 <properties>
-                  <type>tabpanel</type>
+                  <type>tag</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
@@ -1297,95 +1335,25 @@ https://www.loc.gov/standards/mods/userguide/subject.html#geographic
                       <path>self::node()</path>
                       <context>parent</context>
                       <schema/>
-                      <type>element</type>
+                      <type>xml</type>
                       <prefix>NULL</prefix>
-                      <value>name</value>
+                      <value>&lt;name type="personal"&gt;&lt;namePart&gt;%value%&lt;/namePart&gt;&lt;/name&gt;</value>
                     </create>
                     <read>
-                      <path>mods:name</path>
+                      <path>mods:name/mods:namePart</path>
                       <context>parent</context>
                     </read>
-                    <update>NULL</update>
-                    <delete>NULL</delete>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
                   </actions>
                 </properties>
-                <children>
-                  <element name="type">
-                    <properties>
-                      <type>select</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <default_value>personal</default_value>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <options>
-                        <corporate>corporate</corporate>
-                        <personal>personal</personal>
-                      </options>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Type</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>attribute</type>
-                          <prefix>NULL</prefix>
-                          <value>type</value>
-                        </create>
-                        <read>
-                          <path>@type</path>
-                          <context>parent</context>
-                        </read>
-                        <update>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </update>
-                        <delete>NULL</delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                  <element name="namePart">
-                    <properties>
-                      <type>textfield</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Name</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>xml</type>
-                          <prefix>NULL</prefix>
-                          <value>&lt;namePart&gt;%value%&lt;/namePart&gt;</value>
-                        </create>
-                        <read>
-                          <path>mods:namePart</path>
-                          <context>parent</context>
-                        </read>
-                        <update>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </update>
-                        <delete>NULL</delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                </children>
+                <children/>
               </element>
             </children>
           </element>
@@ -1917,6 +1885,8 @@ One or more statements may be supplied. If one is supplied, it is a point (i.e.,
           </attributes>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
+          <default_value>Digital files found in the UTSC Library's Digital Collections are meant for research and private study used in compliance with copyright legislation. Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from the copyright holder. Please contact UTSC Library, Archives &amp; Special Collections for further information.</default_value>
+          <description>A statement on permitted use of the item.</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
