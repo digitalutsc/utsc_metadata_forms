@@ -53,7 +53,7 @@
     <abstract><![CDATA[{{ data.description }}]]></abstract>
     <language>
         {% for language in data.mods_language_languageTerm |split ('|') %}
-            <languageTerm languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
+            <languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
         {% endfor %}
     </language>
     <originInfo>
