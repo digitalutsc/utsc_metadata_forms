@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}
+{% autoescape false %}
+<mods
+        xmlns="http://www.loc.gov/mods/v3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+    <titleInfo>
+        <title lang="eng"><![CDATA[ {{ data.mods_titleinfo_title }} ]]></title>
+        {% if data.mods_titleinfo_subtitle is not empty%}
+            <subTitle>{{ data.mods_titleinfo_subtitle }}</subTitle>
+        {% endif %}
+    </titleInfo>
+    <abstract><![CDATA[{{ data.description }}]]></abstract>
+
+    <relatedItem type="otherFormat">
+        <titleInfo>
+            <title>Related Item (Archival Finding Aid)</title>
+        </titleInfo>
+        <location>
+            <url><![CDATA[{{ data.finding_aid }}]]></url>
+        </location>
+    </relatedItem>
+    <relatedItem type="otherVersion">
+        <titleInfo>
+            <title>Related Item (Exhibit Website)</title>
+        </titleInfo>
+        <location>
+             <url><![CDATA[{{ data.exhibit_site }}]]></url>
+        </location>
+    </relatedItem>
+
+    <accessCondition type="use and reproduction"><![CDATA[ {{ data.mods_accesscondition_useandreproduction }} ]]></accessCondition>
+
+    <identifier type="local"><![CDATA[{{ data.mods_local_identifier }}]]></identifier>
+    <note><![CDATA[{{ data.note }}]]></note>
+
+    <recordInfo>
+        <languageOfCataloging>
+        {% if data.mods_recordinfo_langofcataloguing_code is not empty %}
+            <languageTerm authority="iso639-2" type="code">{{  data.mods_recordinfo_langofcataloguing_code }}</languageTerm>
+        {% else %}
+        {# Assume language of cataloguing is eng #}
+            <languageTerm authority="iso639-2" type="code">eng</languageTerm>
+        {% endif %}
+        </languageOfCataloging>
+    </recordInfo>
+</mods>
+{% endautoescape %}
+{% endblock %}
