@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}
+{% autoescape false %}
+<mods
+        xmlns="http://www.loc.gov/mods/v3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+	<titleInfo>
+		<title lang="eng"><![CDATA[ {{ data.title }} ]]></title>
+        	{% if data.subtitle is not empty%}
+            	<subTitle>{{ data.subtitle }}</subTitle>
+        	{% endif %}
+    	</titleInfo>
+
+	{% for personal_role_name in data.personal_role_names |split ('|') %}
+	{% set personal_role_name_info = personal_role_name |split(':') %}
+        <name type="personal">
+		<role>
+			<roleTerm type="text">{{ personal_role_name_info[0] }}</roleTerm>
+ 		</role>
+		<namePart><![CDATA[{{ personal_role_name_info[1] }}]]></namePart>
+		<affiliation><![CDATA[{{ personal_role_name_info[2] }}]]></affiliation>
+        </name>
+	{% endfor %}
+	
+	{% for corporate_role_name in data.corporate_role_names |split ('|') %}
+	{% set corporate_role_name_info = corporate_role_name |split(':') %}
+        <name type="corporate">
+        	<role>
+			<roleTerm type="text">{{ corporate_role_name_info[0] }}</roleTerm>
+		</role>
+		<namePart><![CDATA[{{ corporate_role_name_info[1] }}]]></namePart>
+		<affiliation><![CDATA[{{ corporate_role_name_info[2] }}]]></affiliation>
+	</name>
+	{% endfor %}	
+	
+    	<typeOfResource>{{ data.type_of_resource }}</typeOfResource>
+    	<genre authority=”aat”><![CDATA[{{ data.genre }}]]></genre>
+   	 <abstract><![CDATA[{{ data.description }}]]></abstract>	
+   	 <language>
+        {% for language in data.language_iso6392b |split ('|') %}
+        	<languageTerm authority="iso639-2" type="code">{{ language|trim }}</languageTerm>
+        {% endfor %}
+    	</language>
+    	<originInfo>
+        	<publisher>{{ data.publisher }}</publisher>
+        	<place>
+            		<placeTerm type="text">{{ data.published_place }}</placeTerm>
+            		<placeTerm  authority="marccountry" type="code">{{ data.published_place_marccountry }}</placeTerm> 	            		
+        	</place>
+       	<place>
+
+        	<dateCreated keyDate=”yes”>{{  data.datecreated_rad14b5 }}</dateCreated>
+        	{% if data.datecreated_start_iso8601 is not empty%}
+            		<dateCreated point="start">{{ data.datecreated_start_iso8601 }}</dateCreated>
+        	{% endif %}
+        	{% if data.datecreated_end_iso8601 is not empty%}
+            		<dateCreated point="end">{{ data.datecreated_end_iso8601 }}</dateCreated>
+        	{% endif %}
+        	<copyrightDate>{{ data.datecopyright_iso8601 }}</copyrightDate>
+    	</originInfo>    
+    	<physicalDescription>
+        	<form authority="smd"><![CDATA[ {{ data.physicaldescription_form }}]]></form>
+        	<extent><![CDATA[ {{ data.physicaldescription_extent }}]]></extent>
+        	<reformattingQuality><![CDATA[ {{ data.physicaldescription_reformatting_quality }}]]></reformattingQuality>
+        	<digitalOrigin><![CDATA[ {{ data.physicaldescription_digitalorigin }}]]></digitalOrigin>
+        	<internetMediaType><![CDATA[ {{ data.physicaldescription_internetmediatype }}]]></internetMediaType>
+        	<note><![CDATA[ {{ data.physicaldescription_note }}]]></note>        	
+    	</physicalDescription>  
+    	     	
+    	<subject authority="local">
+        {% for topic in data.subject_topic |split ('|') %}
+            	<topic><![CDATA[ {{ topic|trim }} ]]></topic>
+        {% endfor %}
+        {% for geographic in data.subject_geographic |split ('|') %}
+        	<geographic><![CDATA[ {{ geographic|trim }} ]]></geographic>
+        {% endfor %}
+        {% for temporal in data.subject_temporal |split ('|') %}
+        	<temporal><![CDATA[ {{ temporal|trim }} ]]></temporal>
+        {% endfor %}
+        {% for subjectname_persoal in data.subject_name_personal |split ('|') %}
+        	<name type="personal">
+            		<namePart>{{ subjectname_persoal|trim }}</namePart>
+        	</name>
+        {% endfor %}
+        {% for subjectname_corporate in data.subject_name_corporate |split ('|') %}
+        	<name type="corporate">
+            		<namePart>{{ subjectname_corporate|trim }}</namePart>
+        	</name>
+        {% endfor %}        
+       	 <hierarchicalGeographic>
+            		<continent><![CDATA[{{ data.subject_hierarchicalgeographic_continent }}]]></continent>
+            		<country><![CDATA[{{ data.subject_hierarchicalgeographic_country }}]]></country>
+            		<state><![CDATA[{{ data.subject_hierarchicalgeographic_state }}]]></state>
+            		<province><![CDATA[{{ data.subject_hierarchicalgeographic_province }}]]></province>
+            		<region><![CDATA[{{ data.subject_hierarchicalgeographic_region }}]]></region>
+            		<county><![CDATA[{{ data.subject_hierarchicalgeographic_county }}]]></county>
+            		<island><![CDATA[{{ data.subject_hierarchicalgeographic_island }}]]></island>
+            		<city><![CDATA[{{ data.subject_hierarchicalgeographic_city }}]]></city>
+            		<citysection><![CDATA[{{ data.subject_hierarchicalgeographic_citysection }}]]></citysection>
+        		</hierarchicalGeographic>
+       	<cartographics>
+           		<coordinates><![CDATA[{{ data.subject_geographic_coordinates }}]]></coordinates>
+        	</cartographics>
+    	</subject>    	
+    	{% if data.relateditem_title is not empty %}
+    	<relatedItem type="host">
+        	<titleInfo>
+           		<title><![CDATA[{{ data.relateditem_title }}]]></title>
+        	</titleInfo>
+    	</relatedItem>
+    	{% endif %}    
+    	{% if data.relateditem_collection_title is not empty %}
+    	<relatedItem type="collection">
+        	<titleInfo>
+           		<title><![CDATA[{{ data.relateditem_collection_title }}]]></title>
+        	</titleInfo>
+    	</relatedItem>
+    	{% endif %}       		
+    	{% if data.accesscondition_restrictiononaccess is not empty%}
+    	<accessCondition type="restriction and access"><![CDATA[ {{ data.accesscondition_restrictiononaccess }}]]></accessCondition>
+    	{% endif %}
+    	    	<accessCondition type="use and reproduction"><![CDATA[ Digital files found in the UTSC Library's Digital Collections are meant for research and private study used in compliance with copyright legislation. Access to digital images and text found on this website and the technical capacity to download or copy it does not imply permission to re-use. Prior written permission to publish, or otherwise use images and text found on the website must be obtained from the copyright holder. Please contact UTSC Library, Archives & Special Collections for further information.]]></accessCondition>
+    	<location>
+        	<url usage="primary display"><![CDATA[{{ data.location_url }}]]></url>
+        	{% if data.location_physical is not empty %}
+        	<physicalLocation><![CDATA[{{ data.location_physical }}]]></physicalLocation>
+        	{% endif %}
+   	</location>   	 
+    	<identifier type="uri">{{ data.identifier_pid}}</identifier>
+    	<identifier type="local"><![CDATA[{{ data.identifier_local}}]]></identifier>
+    	<identifier type="ark"><![CDATA[{{ data.identifier_ark}}]]></identifier> 	    	
+    	 <note><![CDATA[{{ data.note }}]]></note>
+    	<recordInfo>
+    		{% if data.recordinfo_note_coursecode is not empty %}
+       	<recordInfoNote type="courseCode"><![CDATA[ {{ data.recordinfo_note_coursecode }} ]]></recordInfoNote>
+       	{% endif %}
+       	
+       	{% if data.recordinfo_note_courseyear is not empty %}
+        	<recordInfoNote type="courseYear"><![CDATA[ {{ data.recordinfo_note_courseyear }} ]]></recordInfoNote>
+        	{% endif %}
+        	
+        	{% if data.recordinfo_note_courseterm is not empty %}
+       	<recordInfoNote type="courseTerm"><![CDATA[ {{ data.recordinfo_note_courseterm }} ]]></recordInfoNote>
+       	{% endif %}
+       	   	
+        	<languageOfCataloging>
+        	{% if data.recordinfo_cataloguing_language_iso6392b is not empty %}
+            		<languageTerm authority="iso639-2" type="code">{{  data.recordinfo_cataloguing_language_iso6392b }}</languageTerm>
+        	{% else %}
+        	{# Assume language of cataloguing is eng #}
+            		<languageTerm authority="iso639-2" type="code">eng</languageTerm>
+        	{% endif %}
+        	</languageOfCataloging>
+        	
+    	</recordInfo>    	 
+
+
+     	
+</mods>
+{% endautoescape %}
+{% endblock %}
